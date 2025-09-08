@@ -1,0 +1,36 @@
+{
+  "name": "fastlocation-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"No tests\" && exit 0"
+  },
+  "dependencies": {
+    "next": "14.2.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.48.2",
+    "zod": "3.23.8",
+    "tailwindcss": "3.4.4",
+    "classnames": "2.5.1",
+    "ag-psd": "19.0.0",
+    "sharp": "0.33.3",
+    "formidable": "3.5.1",
+    "uuid": "9.0.1",
+    "mime": "3.0.0",
+    "date-fns": "3.6.0",
+    "fluent-ffmpeg": "2.1.2",
+    "dotenv": "16.4.5",
+    "@hookform/resolvers": "3.3.4"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.3",
+    "postcss": "8.4.31",
+    "autoprefixer": "10.4.17"
+  }
+}
