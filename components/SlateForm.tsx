@@ -8,9 +8,10 @@ import ExportButton from './ExportButton';
 interface Props {
   jobId: string;
   overlayEnabled: boolean;
+  onOverlayAuto: (v: boolean) => void;
 }
 
-export default function SlateForm({ jobId, overlayEnabled }: Props) {
+export default function SlateForm({ jobId, overlayEnabled, onOverlayAuto }: Props) {
   const methods = useForm<SlateFields>({
     resolver: zodResolver(slateSchema),
     defaultValues: {
@@ -33,7 +34,11 @@ export default function SlateForm({ jobId, overlayEnabled }: Props) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'output';
+    let filename = 'output';
+    const dispo = res.headers.get('Content-Disposition');
+    const match = dispo?.match(/filename="(.+)"/);
+    if (match) filename = match[1];
+    a.download = filename;
     a.click();
   }
 
@@ -41,7 +46,12 @@ export default function SlateForm({ jobId, overlayEnabled }: Props) {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-2">
         <input {...methods.register('show')} placeholder="Show" className="border p-2 w-full" />
-        <select {...methods.register('submittingFor')} className="border p-2 w-full">
+        <select
+          {...methods.register('submittingFor', {
+            onChange: (e) => onOverlayAuto(e.target.value !== 'FINAL'),
+          })}
+          className="border p-2 w-full"
+        >
           <option value="WIP">WIP</option>
           <option value="FINAL">FINAL</option>
         </select>

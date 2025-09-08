@@ -16,7 +16,11 @@ export default function Page() {
       {jobId && (
         <div className="space-y-4">
           <OverlaySwitch enabled={overlayEnabled} onChange={setOverlayEnabled} />
-          <SlateForm jobId={jobId} overlayEnabled={overlayEnabled} />
+          <SlateForm
+            jobId={jobId}
+            overlayEnabled={overlayEnabled}
+            onOverlayAuto={setOverlayEnabled}
+          />
         </div>
       )}
     </main>
